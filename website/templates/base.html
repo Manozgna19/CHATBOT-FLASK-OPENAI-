@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Single Turn Chatbot with OpenAI{% endblock %}</title>
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Global Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='globalstyles.css') }}">
+</head>
+
+<body class="flex flex-col min-h-screen bg-gray-50 text-gray-900 font-inter">
+    <!-- Include Navbar -->
+    {% include "navbar.html" %}
+
+    <!-- Main Content (flex-grow pushes footer down) -->
+    <main class="container mx-auto p-4 flex-grow">
+        {% block content %}
+        <!-- Content from child templates will be injected here -->
+        {% endblock %}
+    </main>
+
+    <!-- Include Footer -->
+    {% include "footer.html" %}
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+/* website/static/globalstyles.css */
+
+/* Global font and basic styling */
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+/* Paragraphs, spans, buttons, inputs, textarea */
+p,
+span,
+button,
+input,
+textarea {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+/* Custom scrollbar styling for chat-box (if applicable) */
+#chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: #818cf8;
+    border-radius: 6px;
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+    background-color: #4f46e5;
+}
+
+.active-tab {
+    background-color: #4338CA;
+    color: white;
+    border-right: 1px solid white;
+}

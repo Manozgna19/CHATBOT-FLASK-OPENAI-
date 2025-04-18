@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="max-w-8xl mx-auto bg-white p-6 rounded-lg shadow h-[80vh] overflow-y-auto border border-indigo-200 mt-4">
+    <h2 class="text-4xl font-bold mb-4">Welcome to the AI Assistant</h2>
+    <p class="mb-4 text-xl">
+        Our AI Assistant empowers you with a seamless, single-turn chat experience powered by Azure OpenAI.
+        Engage instantly with a GPT-based chatbot that answers your questions on the fly.
+        Explore a range of features including real-time query responses, a clean and responsive interface,
+        and an intuitive search history. Stay tuned for even more capabilities—like advanced user authentication,
+        voice-enabled interactions, multi-turn conversations, dynamic image and code generation, and enhanced history
+        management.
+    </p>
+
+    <p class="mb-3 text-xl">
+        <strong>Features:</strong>
+    </p>
+    <ul class="list-disc list-inside mb-4 text-xl">
+        <li><strong>Home Page:</strong> Overview of the application's capabilities.</li>
+        <li><strong>Single Turn Chat Bot:</strong> Engage with a GPT-based assistant for one-off queries.</li>
+        <li><strong>Responsive UI:</strong> A clean, adaptable interface for seamless interactions.</li>
+    </ul>
+    <p class="mb-4 text-xl">
+        Use the navigation bar above to explore the chatbot or view your search history.
+    </p>
+
+    <hr class="my-4 border-t-2 border-indigo-400" />
+
+    <p class="mb-3 text-xl">
+        <strong>Up coming Features:</strong>
+    </p>
+    <ul class="list-disc list-inside mb-4 text-xl">
+        <li><strong>Auth0 Integration:</strong> Enhanced security with robust user authentication and management.</li>
+        <li><strong>Speech Input:</strong> Enable voice-based interactions for a hands-free experience.</li>
+        <li><strong>Multi Turn Chat Bot:</strong> Support extended, context-aware conversations with GPT-based
+            responses.</li>
+        <li><strong>Image Generation:</strong> Generate creative images based on your prompts.</li>
+        <li><strong>Code Generation:</strong> Automatically produce code snippets to accelerate development.</li>
+        <li><strong>NoSQL Integration:</strong> Efficiently store and retrieve chat sessions using a NoSQL database.
+        </li>
+        <li><strong>Improved Search History:</strong> Easily access and review previous queries with a refined
+            interface.</li>
+    </ul>
+
+</div>
+{% endblock %}

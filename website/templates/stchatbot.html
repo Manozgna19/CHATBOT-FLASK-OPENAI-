@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Single Turn Chat{% endblock %}
+{% block content %}
+<div class="max-w-8xl mx-auto bg-white p-6 mt-4 rounded-lg shadow border border-indigo-200 h-[80vh] overflow-y-auto">
+    <h2 class="text-4xl font-bold mb-4">Chat with OpenAI 🤖</h2>
+
+    <!-- Chat Box -->
+    <div id="chat-box"
+        class="bg-gray-50 h-[55vh] overflow-y-auto p-4 rounded mb-4 border border-indigo-300 flex flex-col space-y-2 text-lg">
+    </div>
+
+    <!-- Input & Button -->
+    <div class="flex space-x-2">
+        <textarea id="user-input" placeholder="Type your message..."
+            class="flex-grow border border-gray-300 rounded-lg px-3 py-3 h-20 resize-none focus:outline-none focus:ring focus:ring-blue-300 text-lg"></textarea>
+        <button id="send-btn"
+            class="bg-indigo-400 text-white text-xl font-bold px-4 py-3 rounded-lg hover:bg-indigo-600 transition flex flex-col items-center justify-center">
+            <span class="text-lg">📩</span>
+            <span class="font-bold">Send</span>
+        </button>
+    </div>
+</div>
+
+<!-- Load Marked.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+    const chatBox = document.getElementById("chat-box");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    function appendMessage(role, message) {
+        const msgDiv = document.createElement("div");
+        msgDiv.classList.add("flex", "mb-2");
+
+        if (role === "user") {
+            // User message (align right, blue background)
+            msgDiv.classList.add("justify-end");
+            msgDiv.innerHTML = `
+                <div class="bg-indigo-200 text-indigo-900 text-xl p-3 rounded-lg shadow rounded-br-none">
+                    <strong>👤:</strong> ${message}
+                </div>
+            `;
+        } else {
+            // Bot message (align left, gray background)
+            msgDiv.classList.add("justify-start");
+            // Convert Markdown content to HTML using marked
+            const htmlContent = marked.parse(message);
+            msgDiv.innerHTML = `
+                <div class="bg-indigo-50 text-indigo-900 text-xl p-3 rounded-lg shadow rounded-bl-none">
+                    <strong>🤖:</strong> ${htmlContent}
+                </div>
+            `;
+        }
+
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the latest message
+    }
+
+    async function sendMessage() {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        appendMessage("user", message);
+        userInput.value = "";
+        userInput.focus();
+
+        try {
+            const res = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message })
+            });
+            const data = await res.json();
+            if (data.response) {
+                appendMessage("bot", data.response);
+            } else if (data.error) {
+                appendMessage("bot", `Error: ${data.error}`);
+            }
+        } catch (error) {
+            appendMessage("bot", `Error: ${error}`);
+        }
+    }
+
+    // Event listeners
+    sendBtn.addEventListener("click", sendMessage);
+    userInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+</script>
+{% endblock %}
