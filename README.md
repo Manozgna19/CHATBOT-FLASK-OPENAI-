@@ -263,7 +263,7 @@ Once the server is up and running, head to http://localhost:5000 in your browser
  
 
 
-### Please refer to the [**Source Code**](https://github.com/Manozgna19/CHATBOT-FLASK-OPENAI.git)  for more details
+### Please refer to the [**Source Code**](https://github.com/Manozgna19/CHATBOT-FLASK-OPENAI-.git)  for more details
 
 For any further queries, feel free to connect via [**LinkedIn**](https://www.linkedin.com/in/manozgna-m)
 
